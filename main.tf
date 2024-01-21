@@ -7,7 +7,7 @@ terraform {
   }
 }
 provider "aws" {
-  region = var.region
+  region = "ap-south-1"
 }
 
 resource "aws_vpc" "tf_vpc" {
