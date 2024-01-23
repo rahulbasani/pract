@@ -38,6 +38,7 @@ pipeline{
                 else{
                     sh 'terraform destroy -auto-approve'
                 }
+	  }
         }
     }
 }
