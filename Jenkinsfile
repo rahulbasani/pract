@@ -32,8 +32,12 @@ pipeline{
                 ok "${params.action}"
             }
             steps{
-                sh 'terraform ${params.action} tfplan'
-            }
+                if (${params.action} == 'apply'){
+                    sh 'terraform apply tfplan'
+                }
+                else{
+                    sh 'terraform destroy -auto-approve'
+                }
         }
     }
 }
