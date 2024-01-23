@@ -1,5 +1,8 @@
 pipeline{
     
+    parameters{
+        choice(name: 'action', choices: ['apply','destroy'], description: 'choose the operation')
+    }
     environment{
         AWS_ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
@@ -25,11 +28,11 @@ pipeline{
         }
         stage('Approval'){
             input{
-                message "Apply terraform plan"
-                ok "Apply"
+                message "${params.action} terraform plan"
+                ok "${params.action}"
             }
             steps{
-                sh 'terraform apply tfplan'
+                sh 'terraform ${params.action} tfplan'
             }
         }
     }
