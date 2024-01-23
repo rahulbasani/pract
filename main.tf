@@ -16,3 +16,9 @@ resource "aws_vpc" "tf_vpc" {
 
 }
 
+resource "aws_subnet" "tf_subnet" {
+  vpc_id = aws_vpc.tf_vpc.id
+  availability_zone = "ap-south-1a"
+  cidr_block = "192.168.10.0/24"
+}
+
