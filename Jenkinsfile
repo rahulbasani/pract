@@ -32,7 +32,7 @@ pipeline{
                 ok "${params.action}"
             }
             steps{
-                if (${params.action} == 'apply'){
+                if (params.action == 'apply'){
                     sh 'terraform apply tfplan'
                 }
                 else{
