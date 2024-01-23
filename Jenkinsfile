@@ -20,7 +20,16 @@ pipeline{
         }
         stage('terraform plan'){
             steps{
-                sh 'terraform plan'
+                sh 'terraform plan -out=tfplan'
+            }
+        }
+        stage('Approval'){
+            input{
+                message "Apply terraform plan"
+                ok "Apply"
+            }
+            steps{
+                sh 'terraform apply tfplan -auto-approve'
             }
         }
     }
